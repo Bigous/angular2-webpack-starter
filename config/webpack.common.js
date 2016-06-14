@@ -9,6 +9,7 @@ const helpers = require('./helpers');
  * Webpack Plugins
  */
 // problem with copy-webpack-plugin
+const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 var CopyWebpackPlugin = (CopyWebpackPlugin = require('copy-webpack-plugin'), CopyWebpackPlugin.default || CopyWebpackPlugin);
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
@@ -59,7 +60,7 @@ module.exports = {
     'main':      './src/main.browser.ts'
 
   },
-  
+
   /*
    * Options affecting the resolving of modules.
    *
@@ -189,6 +190,10 @@ module.exports = {
    * See: http://webpack.github.io/docs/configuration.html#plugins
    */
   plugins: [
+
+    new ProvidePlugin({
+      Highcharts: "highcharts"
+    }),
 
     /*
      * Plugin: ForkCheckerPlugin
